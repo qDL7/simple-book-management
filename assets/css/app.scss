@@ -1,0 +1,10 @@
+@import "~bootstrap/scss/bootstrap";
+
+.grid-striped .header {
+  background-color: #0c5460;
+  color: #FFF;
+}
+
+.grid-striped .row:nth-of-type(even) {
+  background-color: rgba(0,0,0,.05);
+}

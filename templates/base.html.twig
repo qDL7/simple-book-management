@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Simple book management{% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('build/app.css') }}">
+    {% endblock %}
+</head>
+<body>
+<div class="col">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav">
+                <li class="nav-item {{ app.request.attributes.get('_route') starts with 'home'?'active':'' }}">
+                    <a class="nav-link" href="{{ path('home') }}">Home</a>
+                </li>
+                <li class="nav-item {{ app.request.attributes.get('_route') starts with 'book'?'active':'' }}">
+                    <a class="nav-link" href="{{ path('book_list') }}">Books</a>
+                </li>
+                <li class="nav-item {{ app.request.attributes.get('_route') starts with 'category'?'active':'' }}">
+                    <a class="nav-link" href="{{ path('category_list') }}">Categories</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+<div class="container">
+    {% block body %}{% endblock %}
+</div>
+{% block javascripts %}
+    {{ encore_entry_link_tags('app') }}
+{% endblock %}
+</body>
+</html>

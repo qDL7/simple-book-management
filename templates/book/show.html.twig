@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Book{% endblock %}
+
+{% block body %}
+    <div class="row mt-2">
+        <div class="col">
+            <h1>Book</h1>
+        </div>
+    </div>
+    <div>
+        <div class="row p-2">
+            <div class="col-2">Id</div>
+            <div class="col-10">Name</div>
+        </div>
+        <div class="row p-2">
+            <div class="col-2">{{ book.id }}</div>
+            <div class="col-10">{{ book.name }}</div>
+        </div>
+    </div>
+    {% if not book.categories is empty%}
+        <h3>Categories</h3>
+        {% for category in book.categories %}
+            <p>{{ category.name }}</p>
+        {% endfor %}
+    {% endif %}
+    <div class="row mt-2">
+        <a href="{{ path('book_list') }}">
+            <button class="btn btn-secondary">Back to list</button>
+        </a>
+        <a href="{{ path('book_edit', {'id': book.id}) }}">
+            <button class="btn btn-success">Edit</button>
+        </a>
+        {{ include('_delete_form.html.twig', {'id': book.id, 'delete_route_name': 'book_delete'}) }}
+    </div>
+{% endblock %}

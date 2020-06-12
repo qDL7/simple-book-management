@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Category list{% endblock %}
+
+{% block body %}
+    <div class="row mt-2">
+        <div class="col">
+            <h1>Category list</h1>
+        </div>
+    </div>
+    <div class="row m-2 float-right">
+        <div class="col">
+            <a href="{{ path('category_new') }}">
+                <button class="btn btn-primary">New</button>
+            </a>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="grid-striped">
+        <div class="row header p-2">
+            <div class="col-2">Id</div>
+            <div class="col-6">Name</div>
+            <div class="col-4">Actions</div>
+        </div>
+        {% for category in pagination %}
+            <div class="row p-2">
+                <div class="col-2">{{ category.id }}</div>
+                <div class="col-6 text-truncate">{{ category.name }}</div>
+                <div class="col-4">
+                    <a href="{{ path('category_show', {'id': category.id}) }}">
+                        <button class="btn btn-info">Show</button>
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            <div class="row">
+                <div class="col-12">No records found</div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="row mt-2">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+{% endblock %}
